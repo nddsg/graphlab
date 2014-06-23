@@ -535,9 +535,9 @@ endif()
 # check if MTUNE is set
 if (NOT MTUNE)
   #set to native if supported
-  check_cxx_compiler_flag(-mtune=native HAS_MTUNE_NATIVE)
+  check_cxx_compiler_flag(-mtune=x86-64 HAS_MTUNE_NATIVE)
   if(HAS_MTUNE_NATIVE)
-    set(MTUNE "native")
+    set(MTUNE "x86-64")
   else()
     set(MTUNE "x86-64")
   endif()
