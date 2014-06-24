@@ -329,6 +329,8 @@ bool graph_loader(graph_type& graph, const std::string& fname,
   namespace ascii = boost::spirit::ascii;
   namespace phoenix = boost::phoenix;
 
+	std::cout << "graph_loader readline " << line << std::endl;
+
   graphlab::vertex_id_type doc_id(-1), word_id(-1);
   size_t count = 0;
   const bool success = qi::phrase_parse
@@ -355,6 +357,9 @@ bool graph_loader(graph_type& graph, const std::string& fname,
   ASSERT_NE(doc_id, word_id);
   // Create an edge and add it to the graph
   graph.add_edge(doc_id, word_id, edge_data(count));
+
+	std::cout << "doc_id "<<doc_id<<" word_id "<<word_id<<" edge_data(count) "<<count<<std::endl;
+
   return true; // successful load
 }; // end of graph loader
 
