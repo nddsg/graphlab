@@ -393,6 +393,9 @@ inline bool is_doc(const graph_type::vertex_type& vertex) {
  * \brief return the number of tokens on a particular edge.
  */
 inline size_t count_tokens(const graph_type::edge_type& edge) {
+	// assignment is a vector of tokens, so the size of it is the # of target tokens that an article has.
+	// Target token means the target word vertex, each word have only one vertex, but each there may be multiple
+	// instances inside one article.
   return edge.data().assignment.size();
 }
 
@@ -451,6 +454,13 @@ class cgs_lda_vertex_program :
   public graphlab::IS_POD_TYPE {
 public:
 
+	// The execution pattern is gather-Apply-Scatter (GAS model)
+	// The gather phase is parallelized, Graphlab use this method to "sum up" information from its neighbors
+	// then follows an atomic apply phase, Graphlab use this method to update the center vertex with 
+	//	gathered result
+	// and finally a parallel scatter phase, Graphlab use this method to update the neighbors based on 
+	//	updated center vertex
+
   /**
    * \brief At termination we want to disable sampling to allow the
    * correct final counts to be computed.
@@ -484,6 +494,8 @@ public:
    */
   void apply(icontext_type& context, vertex_type& vertex,
              const gather_type& sum) {
+		//Apply gathered data to center vertex
+		//Center vertex is not ONE vertex, but an vertex who called gather on its neighbors
     const size_t num_neighbors = vertex.num_in_edges() + vertex.num_out_edges();
     ASSERT_GT(num_neighbors, 0);
     // There should be no new edge data since the vertex program has been cleared
@@ -628,6 +640,7 @@ public:
       const graphlab::vertex_id_type wordid = vertex.id();
       ret_value.top_words.resize(vdata.factor.size());
       for(size_t i = 0; i < vdata.factor.size(); ++i) {
+				// Get how many times this token appears in topic i
         const cw_pair_type pair(vdata.factor[i], wordid);
         ret_value.top_words[i].insert(pair);
       }
@@ -636,6 +649,7 @@ public:
   } // end of map function
 
 
+	// Deal with aggregrated result, form a json string for display
   static void finalize(icontext_type& context,
                        const topk_aggregator& total) {
     if(context.procid() != 0) return;
@@ -1193,6 +1207,9 @@ int main(int argc, char** argv) {
   }
 
 
+	//Total # of tokens in all the articles 
+	//Each edge starts from an article and ends at a token, and holding the number of apperance 
+	//of that token inside the article.
   const size_t ntokens = graph.map_reduce_edges<size_t>(count_tokens);
   dc.cout() << "Total tokens: " << ntokens << std::endl;
 
@@ -1201,6 +1218,7 @@ int main(int argc, char** argv) {
   engine_type engine(dc, graph, exec_type, clopts);
   ///! Add an aggregator
   if(!DICTIONARY.empty()) {
+	// Execute topK words aggregator per INTERVAL
     const bool success =
       engine.add_vertex_aggregator<topk_aggregator>
       ("topk", topk_aggregator::map, topk_aggregator::finalize) &&
@@ -1210,6 +1228,8 @@ int main(int argc, char** argv) {
 
   { // Add the Global counts aggregator
     const bool success =
+			//For VertexProgram(in this case, factor_type), there must be an += operator that could 
+			//do the summation of results that returned by map_function(in this case, global_counts_aggregator::map)
       engine.add_vertex_aggregator<factor_type>
       ("global_counts", 
        global_counts_aggregator::map, 
