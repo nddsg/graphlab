@@ -524,9 +524,9 @@ include(CheckCXXCompilerFlag)
 # check if MARCH is set
 if (NOT MARCH)
   #set to native if supported
-  check_cxx_compiler_flag(-march=native HAS_MARCH_NATIVE)
+  check_cxx_compiler_flag(-march=x86-64 HAS_MARCH_NATIVE)
   if(HAS_MARCH_NATIVE)
-    set(MARCH "native")
+    set(MARCH "x86-64")
   else()
     set(MARCH "x86-64")
   endif()
