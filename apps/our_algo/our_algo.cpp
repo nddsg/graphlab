@@ -46,6 +46,8 @@ typedef float distance_type;
 
 typedef int		wiki_page_type;
 
+struct Quad;
+
 /**
  * \brief The current distance of the vertex.
  */
@@ -53,6 +55,8 @@ struct vertex_data {
   distance_type dist;
 	wiki_page_type type;
 	boost::unordered_set<graphlab::vertex_id_type> vid_set;
+	boost::unordered_set<graphlab::vertex_id_type> seen;
+	std::list<Quad> msg_q;
   bool isDead;
 	bool sent;
   vertex_data(wiki_page_type type = 0, distance_type dist = std::numeric_limits<distance_type>::max(),bool isDead=false,bool sent=false) :
@@ -60,11 +64,11 @@ struct vertex_data {
 
 
 	void save(graphlab::oarchive& oarc) const { 
-		oarc << dist << type << vid_set<<isDead<<sent; 
+		oarc << dist << type << vid_set << isDead << sent << seen << msg_q; 
 	}
 	
 	void load(graphlab::iarchive& iarc) { 
-		iarc >> dist >> type >> vid_set>>isDead>>sent; 
+		iarc >> dist >> type >> vid_set >> isDead >> sent >> seen >> msg_q; 
 	} 
 
 };
@@ -74,7 +78,7 @@ struct vertex_data {
  */
 struct edge_data : graphlab::IS_POD_TYPE {
   distance_type dist;
-  edge_data(distance_type dist = 1) : dist(dist) { }
+  edge_data(min_distance_type dist = 1) : dist(dist) { }
 }; // end of edge data
 
 
@@ -120,16 +124,16 @@ struct Quad : graphlab::IS_POD_TYPE {
 	graphlab::vertex_id_type dest_art;
 	distance_type from_last_art;
 	distance_type from_src;
-  graphlab::vertex_id_type last_cat;
-	graphlab::vertex_id_type last_art;
+//  graphlab::vertex_id_type last_cat;
+//	graphlab::vertex_id_type last_art;
 	Quad(): dest_art(0) {}
 
-	Quad(graphlab::vertex_id_type a, distance_type b, distance_type c, graphlab::vertex_id_type _last_art, graphlab::vertex_id_type d){
+	Quad(graphlab::vertex_id_type a, distance_type b, distance_type c){
 		dest_art =a;
 		from_last_art = c;
 		from_src = b;
-		last_art = _last_art;
-    last_cat = d;
+	//	last_art = _last_art;
+  //  last_cat = d;
 	}
 
 };
@@ -138,17 +142,17 @@ struct Triple: graphlab::IS_POD_TYPE{
 
  distance_type from_last_art;
  distance_type from_src;
- graphlab::vertex_id_type last_cat;
- graphlab::vertex_id_type last_art;
+ //graphlab::vertex_id_type last_cat;
+ //graphlab::vertex_id_type last_art;
 
  Triple():from_src(0){}
 
- Triple(distance_type b, distance_type c, graphlab::vertex_id_type _last_art, graphlab::vertex_id_type d)
+ Triple(distance_type b, distance_type c)
  {
     from_last_art = c;
 		from_src = b;
-		last_cat = d;
-		last_art = _last_art;
+		//last_cat = d;
+		//last_art = _last_art;
  }
 };
 
@@ -181,14 +185,13 @@ struct set_union_gather {
 struct our_msg {
 
 std::vector<Quad> collection;
-bool kill = 0;
 
 our_msg& operator+=(const our_msg& other){
 	
 	std::map<graphlab::vertex_id_type, Triple> temp;
 	
 	for(int i=0; i< other.collection.size(); i++){
-		Triple tp3(other.collection[i].from_src, other.collection[i].from_last_art, other.collection[i].last_art, other.collection[i].last_cat);
+		Triple tp3(other.collection[i].from_src, other.collection[i].from_last_art);
 		temp[other.collection[i].dest_art] = tp3;
 	}
 
@@ -197,8 +200,8 @@ our_msg& operator+=(const our_msg& other){
 	    if(temp[collection[i].dest_art].from_src < collection[i].from_src){
 				collection[i].from_src = temp[collection[i].dest_art].from_src;
 			  collection[i].from_last_art = temp[collection[i].dest_art].from_last_art;
-				collection[i].last_cat = temp[collection[i].dest_art].last_cat;
-				collection[i].last_art = temp[collection[i].dest_art].last_art;
+//				collection[i].last_cat = temp[collection[i].dest_art].last_cat;
+//				collection[i].last_art = temp[collection[i].dest_art].last_art;
 				temp[collection[i].dest_art].from_src = -2; // just to mark it
 			}
 		}
@@ -209,12 +212,12 @@ our_msg& operator+=(const our_msg& other){
 	//put the ones not included in the collection 
 	for( it = temp.begin(); it!= temp.end(); it++){
     if( (*it).second.from_src != -2 ){
-			Quad tp2(it->first, it->second.from_src, it->second.from_last_art, it->second.last_art, it->second.last_cat);
+			Quad tp2(it->first, it->second.from_src, it->second.from_last_art);
 			collection.push_back(tp2);
 		}	
 	}
 
-
+/*
 	std::set<graphlab::vertex_id_type> list_of_dest;
 
 	for(unsigned int i=0; i < collection.size(); i++)
@@ -235,7 +238,7 @@ our_msg& operator+=(const our_msg& other){
 		}
 	}
 
-
+*/
 
 	return *this;
 }
@@ -310,88 +313,108 @@ public:
 
 
 
-};
+			};
 
 class main_algo:
-      public graphlab::ivertex_program<graph_type,
-																			graphlab::empty, 
-                                     our_msg >  // our_msg is my message type not gather type 
-    
-       {
+	public graphlab::ivertex_program<graph_type,
+	graphlab::empty, 
+	our_msg >  // our_msg is my message type not gather type 
 
- std::vector<Quad> temp1;
-public:
-  void init(icontext_type& context, const vertex_type& vertex,
-           const our_msg& msg) {
-    temp1 = msg.collection;
-    
-  } 
+{
+
+	std::vector<Quad> temp1;
+	public:
+	void init(icontext_type& context, const vertex_type& vertex,
+			const our_msg& msg) {
+		temp1 = msg.collection;
+
+	} 
 
 
-  // Gather on all edges
-  edge_dir_type gather_edges(icontext_type& context,
-                             const vertex_type& vertex) const {
-    return graphlab::NO_EDGES;
-  }
+	// Gather on all edges
+	edge_dir_type gather_edges(icontext_type& context,
+			const vertex_type& vertex) const {
+		return graphlab::NO_EDGES;
+	}
 
-  void apply(icontext_type& context, vertex_type& vertex,
-              const graphlab::empty& empty) 
+	void apply(icontext_type& context, vertex_type& vertex,
+			const graphlab::empty& empty) 
 	{
-		if(context.iteration() % 10 != 0){
-				
-			distance_type tp = std::numeric_limits<distance_type>::max() ;
 
-			if(vertex.data().sent == true){
-				vertex.data().isDead = true;
-			} else if(vertex.data().type==0){ // if a article
+		distance_type tp = std::numeric_limits<distance_type>::max() ;
 
-				//std::cout<<"Applying on "<<vertex.id()<< " --current "<<vertex.data().dist<<std::endl;
-				for(int i=0; i<temp1.size();i++){
-					//gets minimum distance from incoming category edges
-					if(temp1[i].from_src < tp){
-						tp=temp1[i].from_src;
-					}
+		if(vertex.data().sent == true){
+			vertex.data().isDead = true;
+		} else if(vertex.data().type==0){ // if a article
+
+			//std::cout<<"Applying on "<<vertex.id()<< " --current "<<vertex.data().dist<<std::endl;
+			for(int i=0; i<temp1.size();i++){
+				//gets minimum distance from incoming category edges
+				if(temp1[i].from_src < tp){
+					tp=temp1[i].from_src;
 				}
-				//is the minimum we just found, less than the distance we currently store? If so, store new minimum.
-				if( tp < vertex.data().dist){
-					vertex.data().dist = tp;
-					//		std::cout<<"Setting distance of "<<vertex.id()<<"-"<<tp<<std::endl;
-					vertex.data().sent = true;
-				}
-
-
-				//end of if an article	
-			} else if(vertex.data().type==14){//its a category
-				// dont do anything
 			}
-		}
-  } // end of apply
+			//is the minimum we just found, less than the distance we currently store? If so, store new minimum.
+			if( tp < vertex.data().dist){
+				vertex.data().dist = tp;
+				//		std::cout<<"Setting distance of "<<vertex.id()<<"-"<<tp<<std::endl;
+				vertex.data().sent = true;
+			}
 
-  edge_dir_type scatter_edges(icontext_type& context,
-                              const vertex_type& vertex) const {
-    return graphlab::OUT_EDGES;
-  }
-  
-  // void scatter(icontext_type& context,
-//                 const vertex_type& vertex,
-//                 edge_type& edge) const {
-//   not needed
-//     }
+
+			//end of if an article	
+		} else if(vertex.data().type==14){//its a category
+			// dont do anything
+			
+			std::map<graphlab::vertex_id_type, Triple> temp;
+								
+			for(unsigned int i=0; i < temp1.size(); i++)
+			{
+				vertex.data().seen.insert(temp1[i].dest_art);
+
+				if(vertex.data().msg_q.size() > 0){
+					vertex.data().msg_q.pop_front(); //removed in the previous scatter
+				}
+				
+				vertex.data().msg_q.push_back( temp1[i] ) ;
+
+			}
+			
+		}
+	} // end of apply
+
+	edge_dir_type scatter_edges(icontext_type& context,
+			const vertex_type& vertex) const {
+		return graphlab::OUT_EDGES;
+	}
+
+	// void scatter(icontext_type& context,
+	//                 const vertex_type& vertex,
+	//                 edge_type& edge) const {
+	//   not needed
+	//     }
 
 	void scatter(icontext_type& context, const vertex_type& vertex,
-               edge_type& edge) const 
+			edge_type& edge) const 
 	{
 		const vertex_type other = get_other_vertex(edge, vertex);
 		//		std::cout<<"scattering to "<<other.id()<<"\n";
-    if(other.data().type==14 && vertex.data().type == 14) {//category to category 
-	    our_msg for_cat;
-	
-  	  for(int i=0; i < temp1.size(); i++)
+		if(other.data().type==14 && vertex.data().type == 14) {//category to category 
+			our_msg for_cat;
+
+			for(int i=0; i < 1/*temp1.size()*/; i++)
 			{
-				if(temp1[i].from_last_art < 12 && temp1[i].last_cat != other.id() )
+				//if(temp1[i].from_last_art < 12 && temp1[i].last_cat != other.id() )
 				{
-			   	Quad tp2(temp1[i].dest_art, temp1[i].from_src + 1, temp1[i].from_last_art+1, temp1[i].last_art, vertex.id());
-		      for_cat.collection.push_back(tp2); //updating distance
+
+					Quad msg = vertex.data().msg_q.front() ;
+					if(other.data().seen.find(msg.dest_art) != other.data().seen.end())
+					{
+						msg.from_src += 1;
+						msg.from_last_art += 1;
+
+						for_cat.collection.push_back(msg); //updating distance
+					}
 				}
 			}
 		 	if(for_cat.collection.size() !=0){
@@ -403,9 +426,11 @@ public:
 		  our_msg for_art;
 			for(int i=0; i<temp1.size(); i++){
 				//If it exists in the add_neighbours 
-				if(other.data().vid_set.find( temp1[i].dest_art ) != other.data().vid_set.end())
+				if(other.data().vid_set.find( temp1[i].dest_art ) != other.data().vid_set.end()// && 
+					//(other.data().seen.find(temp1[i].dest_art) != other.data().seen.end()) )
+					)
 				{			
-					Quad tp2(temp1[i].dest_art, temp1[i].from_src+1, temp1[i].from_last_art+1, temp1[i].last_art, vertex.id());
+					Quad tp2(temp1[i].dest_art, temp1[i].from_src+1, temp1[i].from_last_art+1 );
 					if(temp1[i].from_src != std::numeric_limits<distance_type>::max())
 					{
 						for_art.collection.push_back(tp2);
@@ -419,7 +444,7 @@ public:
 		  //std::cout<<"Required \n";
 
 			our_msg for_cat1;
-		  Quad tp2(other.id(), vertex.data().dist, 0, vertex.id(), vertex.id());
+		  Quad tp2(other.id(), vertex.data().dist, 0);
 		  for_cat1.collection.push_back(tp2);
 		  if(vertex.data().dist != std::numeric_limits<distance_type>::max()) 
 			{
@@ -664,7 +689,7 @@ int main(int argc, char** argv) {
 	
 	graphlab::omni_engine<main_algo> engine2(dc, graph, exec_type, clopts);
   our_msg init_msg;
-  Quad  tp2(sources[0],0,0,sources[0],sources[0]);
+  Quad  tp2(sources[0],0,0);
 	init_msg.collection.push_back(tp2);
  
  
