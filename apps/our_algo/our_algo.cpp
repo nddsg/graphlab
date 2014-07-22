@@ -46,7 +46,40 @@ typedef float distance_type;
 
 typedef int		wiki_page_type;
 
-struct Quad;
+struct Quad {
+	graphlab::vertex_id_type src_art;
+	distance_type from_last_art;
+	distance_type from_src;
+	//  graphlab::vertex_id_type last_cat;
+	//  graphlab::vertex_id_type last_art;
+	Quad(): src_art(0) {}
+
+	Quad(graphlab::vertex_id_type a, distance_type b, distance_type c){
+		src_art =a;
+		from_last_art = c;
+		from_src = b;
+		//  last_art = _last_art;
+		//  last_cat = d;
+	}
+
+	void save(graphlab::oarchive& oarc) const { oarc << src_art << from_last_art << from_src;}
+	void load(graphlab::iarchive& iarc) { iarc >> src_art >> from_last_art >> from_src;}
+
+};
+
+/**
+ * \brief This class is used as the gather type.
+ **/
+struct min_distance_type : graphlab::IS_POD_TYPE {
+	distance_type dist;
+	min_distance_type(distance_type dist =
+			std::numeric_limits<distance_type>::max()) : dist(dist) { }
+	min_distance_type& operator+=(const min_distance_type& other) {
+		dist = std::min(dist, other.dist);
+		return *this;
+	}
+};
+
 
 /**
  * \brief The current distance of the vertex.
@@ -64,11 +97,26 @@ struct vertex_data {
 
 
 	void save(graphlab::oarchive& oarc) const { 
-		oarc << dist << type << vid_set << isDead << sent << seen << msg_q; 
+		oarc << dist << type << vid_set << isDead << sent << seen;
+		uint32_t size = msg_q.size();
+		oarc << size;
+		for(std::list<Quad>::const_iterator it=msg_q.begin(); it != msg_q.end(); ++it ) {
+			oarc << *it;
+		}
+
 	}
 	
 	void load(graphlab::iarchive& iarc) { 
-		iarc >> dist >> type >> vid_set >> isDead >> sent >> seen >> msg_q; 
+		iarc >> dist >> type >> vid_set >> isDead >> sent >> seen; 
+		uint32_t msg_q_size;
+		Quad tmp_quad;
+		iarc >> msg_q_size;
+		while(msg_q_size > 0) {
+			iarc >> tmp_quad;
+			msg_q.push_back(tmp_quad);
+			msg_q_size--;
+		}
+
 	} 
 
 };
@@ -76,10 +124,18 @@ struct vertex_data {
 /**
  * \brief The distance associated with the edge.
  */
-struct edge_data : graphlab::IS_POD_TYPE {
-  distance_type dist;
-  edge_data(min_distance_type dist = 1) : dist(dist) { }
+
+struct edge_data{
+	distance_type dist;
+	edge_data() : dist(1) {}
+	edge_data(distance_type _dist): dist(_dist) {}
+	edge_data(min_distance_type _dist) {
+		dist = _dist.dist;
+	}
+	void save(graphlab::oarchive& oarc) const { oarc << dist;}
+	void load(graphlab::iarchive& iarc) { iarc >> dist;}
 }; // end of edge data
+
 
 
 /**
@@ -105,38 +161,7 @@ get_other_vertex(const graph_type::edge_type& edge,
 bool DIRECTED_SSSP = false;
 
 
-/**
- * \brief This class is used as the gather type.
- */
-struct min_distance_type : graphlab::IS_POD_TYPE {
-  distance_type dist;
-  min_distance_type(distance_type dist = 
-                    std::numeric_limits<distance_type>::max()) : dist(dist) { }
-  min_distance_type& operator+=(const min_distance_type& other) {
-    dist = std::min(dist, other.dist);
-    return *this;
-  }
-};
-
 bool PER_VERTEX_COUNT = false;
-
-struct Quad : graphlab::IS_POD_TYPE {
-	graphlab::vertex_id_type dest_art;
-	distance_type from_last_art;
-	distance_type from_src;
-//  graphlab::vertex_id_type last_cat;
-//	graphlab::vertex_id_type last_art;
-	Quad(): dest_art(0) {}
-
-	Quad(graphlab::vertex_id_type a, distance_type b, distance_type c){
-		dest_art =a;
-		from_last_art = c;
-		from_src = b;
-	//	last_art = _last_art;
-  //  last_cat = d;
-	}
-
-};
 
 struct Triple: graphlab::IS_POD_TYPE{
 
@@ -192,17 +217,17 @@ our_msg& operator+=(const our_msg& other){
 	
 	for(int i=0; i< other.collection.size(); i++){
 		Triple tp3(other.collection[i].from_src, other.collection[i].from_last_art);
-		temp[other.collection[i].dest_art] = tp3;
+		temp[other.collection[i].src_art] = tp3;
 	}
 
 	for(unsigned int i=0; i < collection.size(); i++){
-		if(temp.find(collection[i].dest_art) != temp.end()){
-	    if(temp[collection[i].dest_art].from_src < collection[i].from_src){
-				collection[i].from_src = temp[collection[i].dest_art].from_src;
-			  collection[i].from_last_art = temp[collection[i].dest_art].from_last_art;
-//				collection[i].last_cat = temp[collection[i].dest_art].last_cat;
-//				collection[i].last_art = temp[collection[i].dest_art].last_art;
-				temp[collection[i].dest_art].from_src = -2; // just to mark it
+		if(temp.find(collection[i].src_art) != temp.end()){
+	    if(temp[collection[i].src_art].from_src < collection[i].from_src){
+				collection[i].from_src = temp[collection[i].src_art].from_src;
+			  collection[i].from_last_art = temp[collection[i].src_art].from_last_art;
+//				collection[i].last_cat = temp[collection[i].src_art].last_cat;
+//				collection[i].last_art = temp[collection[i].src_art].last_art;
+				temp[collection[i].src_art].from_src = -2; // just to mark it
 			}
 		}
 	}
@@ -222,7 +247,7 @@ our_msg& operator+=(const our_msg& other){
 
 	for(unsigned int i=0; i < collection.size(); i++)
 	{
-		list_of_dest.insert( collection[i].dest_art );
+		list_of_dest.insert( collection[i].src_art );
 	}
 
 
@@ -370,7 +395,7 @@ class main_algo:
 								
 			for(unsigned int i=0; i < temp1.size(); i++)
 			{
-				vertex.data().seen.insert(temp1[i].dest_art);
+				vertex.data().seen.insert(temp1[i].src_art);
 
 				if(vertex.data().msg_q.size() > 0){
 					vertex.data().msg_q.pop_front(); //removed in the previous scatter
@@ -408,8 +433,10 @@ class main_algo:
 				{
 
 					Quad msg = vertex.data().msg_q.front() ;
-					if(other.data().seen.find(msg.dest_art) != other.data().seen.end())
+					//if other has not seen the message.... 
+					if(other.data().seen.find(msg.src_art) == other.data().seen.end())
 					{
+	//					std::cout << "\tsending cat to cat message\tcatid: " << vertex.id() << "\tto:" << other.id() << "\tsrc_art:" << msg.src_art << "\tdist: " << msg.from_src << "\titeration\t" << context.iteration() << "\n";
 						msg.from_src += 1;
 						msg.from_last_art += 1;
 
@@ -424,27 +451,26 @@ class main_algo:
 		} else if ( other.data().type == 0 && vertex.data().type==14 && other.data().isDead == false){//category to article
    
 		  our_msg for_art;
-			for(int i=0; i<temp1.size(); i++){
+			for(int i=0; i<1/*temp1.size()*/; i++){
 				//If it exists in the add_neighbours 
-				if(other.data().vid_set.find( temp1[i].dest_art ) != other.data().vid_set.end()// && 
-					//(other.data().seen.find(temp1[i].dest_art) != other.data().seen.end()) )
-					)
-				{			
-					Quad tp2(temp1[i].dest_art, temp1[i].from_src+1, temp1[i].from_last_art+1 );
-					if(temp1[i].from_src != std::numeric_limits<distance_type>::max())
-					{
+				if(other.data().vid_set.find( temp1[i].src_art ) != other.data().vid_set.end()// && 
+						//(other.data().seen.find(temp1[i].src_art) != other.data().seen.end()) )
+					){
+						Quad tp2(temp1[i].src_art, temp1[i].from_src+1, temp1[i].from_last_art+1 );
 						for_art.collection.push_back(tp2);
 					}
-				}
 			}
 			if(for_art.collection.size() !=0){
 				context.signal(other,for_art);
 			}
 		} else if( other.data().type==14 && vertex.data().type ==0 && vertex.data().isDead == false){//article to category
-		  //std::cout<<"Required \n";
+			//std::cout<<"Required \n";
+
+		//	std::cout << "\tart to cat message, dest:\t" << other.id() << "\tdist:" << vertex.data().dist << "\titeration\t" << context.iteration() << "\tfrom:" << vertex.id() << "\n";
+
 
 			our_msg for_cat1;
-		  Quad tp2(other.id(), vertex.data().dist, 0);
+		  Quad tp2(vertex.id(), vertex.data().dist, 0);
 		  for_cat1.collection.push_back(tp2);
 		  if(vertex.data().dist != std::numeric_limits<distance_type>::max()) 
 			{
