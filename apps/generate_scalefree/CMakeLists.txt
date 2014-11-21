@@ -1,0 +1,2 @@
+project(generate_scalefree)
+add_graphlab_executable(generate_scalefree generate_scalefree.cpp)
