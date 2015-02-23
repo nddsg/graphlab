@@ -1,0 +1,533 @@
+Approximate graph diameter
+
+GRAPHLAB_SUBNET_ID/GRAPHLAB_SUBNET_MASK environment variables not defined.
+Using default values
+Subnet ID: 0.0.0.0
+Subnet Mask: 0.0.0.0
+Will find first IPv4 non-loopback address matching the subnet
+[1;32mINFO:     dc.cpp(init:573): Cluster of 1 instances created.
+[0m[1;32mINFO:     distributed_graph.hpp(set_ingress_method:3201): Automatically determine ingress method: grid
+[0mLoading graph in format: snap
+[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-0-100-2.1.snap.1_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-0-100-2.1.snap.2_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-0-100-2.1.snap.4_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-0-100-2.1.snap.3_of_4
+[0m[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mINFO:     distributed_ingress_base.hpp(exchange_global_info:546): Graph info: 
+	 nverts: 100
+	 nedges: 193
+	 nreplicas: 100
+	 replication factor: 1
+[0m[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.004332
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.003322
+Gathering...
+GATHER: 0.003152
+Applying...
+APPLY: 0.003787
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001408
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.004815
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+1-th hop: 301 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.014868
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006038
+Gathering...
+GATHER: 0.007381
+Applying...
+APPLY: 0.007272
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001653
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008569
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+2-th hop: 595 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006443
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006414
+Gathering...
+GATHER: 0.006995
+Applying...
+APPLY: 0.007699
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001874
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009103
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+3-th hop: 1083 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006738
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006897
+Gathering...
+GATHER: 0.006764
+Applying...
+APPLY: 0.007748
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001857
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008733
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+4-th hop: 1841 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006864
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.0067
+Gathering...
+GATHER: 0.007166
+Applying...
+APPLY: 0.007783
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.00216
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009211
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+5-th hop: 2798 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006034
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006581
+Gathering...
+GATHER: 0.006322
+Applying...
+APPLY: 0.00707
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001724
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008917
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+6-th hop: 3738 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006778
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006613
+Gathering...
+GATHER: 0.006799
+Applying...
+APPLY: 0.007906
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001711
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.00909
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+7-th hop: 5244 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.007269
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006335
+Gathering...
+GATHER: 0.006686
+Applying...
+APPLY: 0.00811
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001804
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009077
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+8-th hop: 6855 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006204
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.005904
+Gathering...
+GATHER: 0.006287
+Applying...
+APPLY: 0.007367
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001707
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009244
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+9-th hop: 8249 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006463
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006542
+Gathering...
+GATHER: 0.006793
+Applying...
+APPLY: 0.007919
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.00177
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008026
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+10-th hop: 9102 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006505
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.00657
+Gathering...
+GATHER: 0.006923
+Applying...
+APPLY: 0.008002
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001706
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008966
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+11-th hop: 9523 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006396
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006636
+Gathering...
+GATHER: 0.00642
+Applying...
+APPLY: 0.007387
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.00164
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008056
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+12-th hop: 10104 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006356
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006487
+Gathering...
+GATHER: 0.006943
+Applying...
+APPLY: 0.007045
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.003043
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008899
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+13-th hop: 10310 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.00653
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006544
+Gathering...
+GATHER: 0.006412
+Applying...
+APPLY: 0.006804
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.00165
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008654
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+14-th hop: 10356 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.006814
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006932
+Gathering...
+GATHER: 0.006798
+Applying...
+APPLY: 0.00774
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001786
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008987
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+15-th hop: 10388 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.009746
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.006306
+Gathering...
+GATHER: 0.007074
+Applying...
+APPLY: 0.008585
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001598
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009758
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+16-th hop: 10444 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.014054
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.008066
+Gathering...
+GATHER: 0.009434
+Applying...
+APPLY: 0.008885
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001657
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008735
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+17-th hop: 10532 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.008849
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.005437
+Gathering...
+GATHER: 0.012233
+Applying...
+APPLY: 0.00833
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001739
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009624
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+18-th hop: 10732 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.007153
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.008995
+Gathering...
+GATHER: 0.012751
+Applying...
+APPLY: 0.009331
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001623
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009161
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+19-th hop: 10836 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.008267
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.009435
+Gathering...
+GATHER: 0.007437
+Applying...
+APPLY: 0.008366
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001634
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.009307
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+20-th hop: 10892 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.007039
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.007505
+Gathering...
+GATHER: 0.014089
+Applying...
+APPLY: 0.009318
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001629
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.00882
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0m[1;32mUpdates: 100
+21-th hop: 10900 vertex pairs are reached
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.008409
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100
+[0mRECEIVE: 0.018929
+Gathering...
+GATHER: 0.009091
+Applying...
+APPLY: 0.008857
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.001671
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.008682
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 1 iterations completed.
+[0mUpdates: 100
+22-th hop: 10900 vertex pairs are reached
+converge
+TIME: 1.27801
+CLOCKTIME: 38.4774
+graph calculation time is 1 sec
+The approximate diameter is 21
+	Command being timed: "/home/cpennycu/graphlab/release/toolkits/graph_analytics/approximate_diameter /home/cpennycu/gdata/sf/sf-0-100-2.1.snap --format snap"
+	User time (seconds): 41.75
+	System time (seconds): 1.75
+	Percent of CPU this job got: 2298%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 21416
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 6778
+	Voluntary context switches: 45732
+	Involuntary context switches: 20508
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

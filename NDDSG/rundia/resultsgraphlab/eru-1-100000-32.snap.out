@@ -1,0 +1,142 @@
+Graph diameter
+
+GRAPHLAB_SUBNET_ID/GRAPHLAB_SUBNET_MASK environment variables not defined.
+Using default values
+Subnet ID: 0.0.0.0
+Subnet Mask: 0.0.0.0
+Will find first IPv4 non-loopback address matching the subnet
+[1;32mINFO:     dc.cpp(init:573): Cluster of 1 instances created.
+[0m[1;32mINFO:     distributed_graph.hpp(set_ingress_method:3201): Automatically determine ingress method: grid
+[0mLoading graph in format: snap
+[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/er/eru-1-100000-32.snap
+[0m# Nodes: 100000
+# Edges: 3200000
+# Maximum Possible Edges: 4999950000
+# Undirected
+# No self-loop allowed
+[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mINFO:     distributed_ingress_base.hpp(exchange_global_info:546): Graph info: 
+	 nverts: 100000
+	 nedges: 3200000
+	 nreplicas: 100000
+	 replication factor: 1
+[0m[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mMax ID: 99999
+Array size: 100000
+Beginning batch 1 of 1
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.007537
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.018032
+Gathering...
+GATHER: 0.052899
+Applying...
+APPLY: 0.043977
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.062132
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.013338
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.015171
+Gathering...
+GATHER: 1.35016
+Applying...
+APPLY: 0.068128
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.06684
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 2
+[0mExchange messages...
+EXCHANGE: 0.014776
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.016841
+Gathering...
+GATHER: 47.8223
+Applying...
+APPLY: 2.95089
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.07038
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 3
+[0mExchange messages...
+EXCHANGE: 0.01225
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.01796
+Gathering...
+GATHER: 97.8504
+Applying...
+APPLY: 33.6709
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.104019
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 4
+[0mExchange messages...
+EXCHANGE: 0.012233
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.017913
+Gathering...
+GATHER: 112.951
+Applying...
+APPLY: 27.4563
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.081736
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 5
+[0mExchange messages...
+EXCHANGE: 0.012178
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.017214
+Gathering...
+GATHER: 140.696
+Applying...
+APPLY: 56.9016
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.005717
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 6
+[0mExchange messages...
+EXCHANGE: 0.013566
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 6 iterations completed.
+[0mUpdates: 600000
+	Iteration time:	0:08:42.44
+	Total spent:	0:08:42.44
+	Projected Total Time:		0:08:42.44
+	Projected Time Remaining:	0:00:00.00
+TIME: 522.441
+CLOCKTIME: 28157.7
+Diameter: 4
+	Command being timed: "/home/cpennycu/graphlab/release/apps/diameter/diameter /home/cpennycu/gdata/er/eru-1-100000-32.snap --format snap --directed 0"
+	User time (seconds): 22677.34
+	System time (seconds): 5547.33
+	Percent of CPU this job got: 4937%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:31.63
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 43207068
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10744995
+	Voluntary context switches: 2667196
+	Involuntary context switches: 249266
+	Swaps: 0
+	File system inputs: 73616
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

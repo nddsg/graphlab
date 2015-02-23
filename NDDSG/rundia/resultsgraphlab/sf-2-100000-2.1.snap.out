@@ -1,0 +1,166 @@
+Graph diameter
+
+GRAPHLAB_SUBNET_ID/GRAPHLAB_SUBNET_MASK environment variables not defined.
+Using default values
+Subnet ID: 0.0.0.0
+Subnet Mask: 0.0.0.0
+Will find first IPv4 non-loopback address matching the subnet
+[1;32mINFO:     dc.cpp(init:573): Cluster of 1 instances created.
+[0m[1;32mINFO:     distributed_graph.hpp(set_ingress_method:3201): Automatically determine ingress method: grid
+[0mLoading graph in format: snap
+[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-2-100000-2.1.snap.4_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-2-100000-2.1.snap.1_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-2-100000-2.1.snap.2_of_4
+[0m[1;32mINFO:     distributed_graph.hpp(load_from_posixfs:2190): Loading graph from file: /home/cpennycu/gdata/sf/sf-2-100000-2.1.snap.3_of_4
+[0m[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mINFO:     distributed_ingress_base.hpp(exchange_global_info:546): Graph info: 
+	 nverts: 100000
+	 nedges: 506081
+	 nreplicas: 100000
+	 replication factor: 1
+[0m[1;32mINFO:     distributed_ingress_base.hpp(finalize:199): Finalizing Graph...
+[0m[1;32mMax ID: 99999
+Array size: 100000
+Beginning batch 1 of 1
+INFO:     synchronous_engine.hpp(start:1300): Iteration counter will only output every 5 seconds.
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 0
+[0mExchange messages...
+EXCHANGE: 0.005913
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.016564
+Gathering...
+GATHER: 0.02066
+Applying...
+APPLY: 0.027465
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.082853
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 1
+[0mExchange messages...
+EXCHANGE: 0.018308
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.012907
+Gathering...
+GATHER: 0.187871
+Applying...
+APPLY: 0.029533
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.104998
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 2
+[0mExchange messages...
+EXCHANGE: 0.011895
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.012862
+Gathering...
+GATHER: 42.8277
+Applying...
+APPLY: 4.05316
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.097372
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 3
+[0mExchange messages...
+EXCHANGE: 0.011754
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.012848
+Gathering...
+GATHER: 48.8757
+Applying...
+APPLY: 19.7603
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.0776
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 4
+[0mExchange messages...
+EXCHANGE: 0.011846
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.013162
+Gathering...
+GATHER: 45.9414
+Applying...
+APPLY: 33.4948
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.113709
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 5
+[0mExchange messages...
+EXCHANGE: 0.011634
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.012778
+Gathering...
+GATHER: 66.6438
+Applying...
+APPLY: 49.1372
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.06346
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 6
+[0mExchange messages...
+EXCHANGE: 0.012522
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 100000
+[0mRECEIVE: 0.013522
+Gathering...
+GATHER: 29.675
+Applying...
+APPLY: 39.4291
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.003499
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 7
+[0mExchange messages...
+EXCHANGE: 0.010595
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 56
+[0mRECEIVE: 0.010204
+Gathering...
+GATHER: 0.009434
+Applying...
+APPLY: 0.019317
+Scattering...
+[1;32mINFO:     synchronous_engine.hpp(start:1414): 	 Running Aggregators
+[0mSCATTER: 0.003353
+[1;32mINFO:     synchronous_engine.hpp(start:1315): 0: Starting iteration: 8
+[0mExchange messages...
+EXCHANGE: 0.010171
+Receive messages...
+[1;32mINFO:     synchronous_engine.hpp(start:1364): 	Active vertices: 0
+[0m[1;32mINFO:     synchronous_engine.hpp(start:1427): 8 iterations completed.
+[0mUpdates: 700056
+	Iteration time:	0:06:20.92
+	Total spent:	0:06:20.92
+	Projected Total Time:		0:06:20.92
+	Projected Time Remaining:	0:00:00.00
+TIME: 380.923
+CLOCKTIME: 20221.9
+Diameter: 6
+	Command being timed: "/home/cpennycu/graphlab/release/apps/diameter/diameter /home/cpennycu/gdata/sf/sf-2-100000-2.1.snap --format snap --directed 0"
+	User time (seconds): 6697.94
+	System time (seconds): 13556.44
+	Percent of CPU this job got: 5058%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:40.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 43564220
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10872113
+	Voluntary context switches: 1373654
+	Involuntary context switches: 222321
+	Swaps: 0
+	File system inputs: 11680
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

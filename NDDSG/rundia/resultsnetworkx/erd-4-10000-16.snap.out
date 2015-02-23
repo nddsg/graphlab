@@ -1,0 +1,40 @@
+Original:
+Name: 
+Type: DiGraph
+Number of nodes: 10000
+Number of edges: 160000
+Average in degree:  16.0000
+Average out degree:  16.0000
+Largest Connected Component:
+Name: 
+Type: DiGraph
+Number of nodes: 10000
+Number of edges: 160000
+Average in degree:  16.0000
+Average out degree:  16.0000
+Diameter: 5
+TIME:  2800.79389
+CLOCKTIME:  2309.229975
+	Command being timed: "python /home/cpennycu/networkx/nx.py -f /home/cpennycu/gdata/er/erd-4-10000-16.snap -d 1"
+	User time (seconds): 2320.83
+	System time (seconds): 1.35
+	Percent of CPU this job got: 82%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 47:00.37
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 353608
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 87704
+	Voluntary context switches: 14
+	Involuntary context switches: 139437
+	Swaps: 0
+	File system inputs: 3056
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

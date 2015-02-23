@@ -1,0 +1,38 @@
+Original:
+Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 320000
+Average degree:  64.0000
+Largest Connected Component:
+Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 320000
+Average degree:  64.0000
+Diameter: 3
+TIME:  6561.485852
+CLOCKTIME:  5811.802179
+	Command being timed: "python /home/cpennycu/networkx/nx.py -f /home/cpennycu/gdata/er/eru-0-10000-32.snap -d 0"
+	User time (seconds): 5835.50
+	System time (seconds): 3.94
+	Percent of CPU this job got: 88%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:49:50
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 533288
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 137740
+	Voluntary context switches: 25
+	Involuntary context switches: 252427
+	Swaps: 0
+	File system inputs: 6112
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

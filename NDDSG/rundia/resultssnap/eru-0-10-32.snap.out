@@ -1,0 +1,35 @@
+Diameter:
+Traceback (most recent call last):
+  File "/home/cpennycu/diameter/snap/sn.py", line 56, in <module>
+    main(sys.argv[1:])
+  File "/home/cpennycu/diameter/snap/sn.py", line 51, in main
+    print "Diameter:", sn.GetBfsFullDiam(g, 1, directed)
+  File "/usr/local/lib/python2.7/dist-packages/snap.py", line 221815, in GetBfsFullDiam
+    if type(tspec) == PUNGraph: return GetBfsFullDiam_PUNGraph(tspec, *args)
+  File "/usr/local/lib/python2.7/dist-packages/snap.py", line 222774, in GetBfsFullDiam_PUNGraph
+    return _snap.GetBfsFullDiam_PUNGraph(*args)
+RuntimeError: Execution stopped: (0<=ValN)&&(ValN<Vals) [Reason:'Index:-1 Vals:0 MxVals:0 Type:4TVecI7TKeyDatI4TInt4TFltEiE'], file ../../snap/glib-core/ds.h, line 455
+Command exited with non-zero status 1
+	Command being timed: "python /home/cpennycu/diameter/snap/sn.py -f /home/cpennycu/gdata/er/eru-0-10-32.snap -d 0"
+	User time (seconds): 0.19
+	System time (seconds): 0.04
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 31664
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 8235
+	Voluntary context switches: 2
+	Involuntary context switches: 1
+	Swaps: 0
+	File system inputs: 8
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

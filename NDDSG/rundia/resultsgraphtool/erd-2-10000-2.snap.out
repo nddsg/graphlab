@@ -1,0 +1,28 @@
+error: XDG_RUNTIME_DIR not set in the environment.
+error: XDG_RUNTIME_DIR not set in the environment.
+Diameter: 24.0
+TIME:  0.127274036407
+CLOCKTIME:  2.72726
+	Command being timed: "python /home/cpennycu/networkx/gt.py -f /home/cpennycu/gdata/er/erd-2-10000-2.snap -d 1"
+	User time (seconds): 5.80
+	System time (seconds): 0.36
+	Percent of CPU this job got: 240%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 67016
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 29937
+	Voluntary context switches: 205
+	Involuntary context switches: 485
+	Swaps: 0
+	File system inputs: 384
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

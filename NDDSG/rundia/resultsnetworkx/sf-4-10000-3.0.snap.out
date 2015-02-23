@@ -1,0 +1,38 @@
+Original:
+Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 13477
+Average degree:   2.6954
+Largest Connected Component:
+Name: 
+Type: Graph
+Number of nodes: 10000
+Number of edges: 13477
+Average degree:   2.6954
+Diameter: 24
+TIME:  535.330450058
+CLOCKTIME:  450.034102
+	Command being timed: "python /home/cpennycu/networkx/nx.py -f /home/cpennycu/gdata/sf/sf-4-10000-3.0.snap -d 0"
+	User time (seconds): 451.28
+	System time (seconds): 0.19
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:57.99
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 64708
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 18846
+	Voluntary context switches: 27
+	Involuntary context switches: 20843
+	Swaps: 0
+	File system inputs: 272
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
