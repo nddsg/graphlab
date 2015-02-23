@@ -1269,6 +1269,7 @@ namespace graphlab {
 
   template<typename VertexProgram> execution_status::status_enum
   synchronous_engine<VertexProgram>::start() {
+    graphlab::timer timerx;
     if (vlocks.size() != graph.num_local_vertices())
       resize();
     completed_applys = 0;
@@ -1308,7 +1309,7 @@ namespace graphlab {
         break;
       }
 
-      bool print_this_round = (elapsed_seconds() - last_print) >= 5;
+      bool print_this_round = true; //(elapsed_seconds() - last_print) >= 5;
 
       if(rmi.procid() == 0 && print_this_round) {
         logstream(LOG_EMPH)
@@ -1325,7 +1326,7 @@ namespace graphlab {
 
       // Exchange Messages --------------------------------------------------
       // Exchange any messages in the local message vectors
-      // if (rmi.procid() == 0) std::cout << "Exchange messages..." << std::endl;
+      if (rmi.procid() == 0) {std::cout << "Exchange messages..." << std::endl; timerx.start(); }
       run_synchronous( &synchronous_engine::exchange_messages );
       /**
        * Post conditions:
@@ -1337,7 +1338,7 @@ namespace graphlab {
       // vertex programs with mirrors if gather is required
       //
 
-      // if (rmi.procid() == 0) std::cout << "Receive messages..." << std::endl;
+      if (rmi.procid() == 0) {std::cout << "EXCHANGE: " << ((float)timerx.current_time_millis() / (float)1000) << std::endl << "Receive messages..." << std::endl; timerx.start();}
       num_active_vertices = 0;
       run_synchronous( &synchronous_engine::receive_messages );
       if (sched_allv) {
@@ -1371,7 +1372,7 @@ namespace graphlab {
       // Execute gather operations-------------------------------------------
       // Execute the gather operation for all vertices that are active
       // in this minor-step (active-minorstep bit set).
-      // if (rmi.procid() == 0) std::cout << "Gathering..." << std::endl;
+      if (rmi.procid() == 0) {std::cout << "RECEIVE: " << ((float)timerx.current_time_millis() / (float)1000) << std::endl << "Gathering..." << std::endl; timerx.start();}
       run_synchronous( &synchronous_engine::execute_gathers );
       // Clear the minor step bit since only super-step vertices
       // (only master vertices are required to participate in the
@@ -1387,7 +1388,7 @@ namespace graphlab {
 
       // Execute Apply Operations -------------------------------------------
       // Run the apply function on all active vertices
-      // if (rmi.procid() == 0) std::cout << "Applying..." << std::endl;
+      if (rmi.procid() == 0) {std::cout << "GATHER: " << ((float)timerx.current_time_millis() / (float)1000) << std::endl << "Applying..." << std::endl; timerx.start();}
       run_synchronous( &synchronous_engine::execute_applys );
       /**
        * Post conditions:
@@ -1403,6 +1404,7 @@ namespace graphlab {
 
       // Execute Scatter Operations -----------------------------------------
       // Execute each of the scatters on all minor-step active vertices.
+      if (rmi.procid() == 0) {std::cout << "APPLY: " << ((float)timerx.current_time_millis() / (float)1000) << std::endl << "Scattering..." << std::endl; timerx.start();}
       run_synchronous( &synchronous_engine::execute_scatters );
       /**
        * Post conditions:
@@ -1418,6 +1420,7 @@ namespace graphlab {
       if (snapshot_interval > 0 && iteration_counter % snapshot_interval == 0) {
         graph.save_binary(snapshot_path);
       }
+      if (rmi.procid() == 0) {std::cout << "SCATTER: " << ((float)timerx.current_time_millis() / (float)1000) << std::endl;}
     }
 
     if (rmi.procid() == 0) {

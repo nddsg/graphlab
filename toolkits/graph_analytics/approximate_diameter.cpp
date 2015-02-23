@@ -311,8 +311,13 @@ int main(int argc, char** argv) {
   dc.cout() << "Loading graph in format: "<< format << std::endl;
   graph.load_format(graph_dir, format);
   graph.finalize();
+  double itotal, iend;
+  graphlab::timer timer;
 
   time_t start, end;
+  clock_t clocktime;
+  clocktime = clock();
+
   //initialize vertices
   time(&start);
   if (use_sketch == false)
@@ -325,6 +330,7 @@ int main(int argc, char** argv) {
   //main iteration
   size_t previous_count = 0;
   size_t diameter = 0;
+  timer.start();
   for (size_t iter = 0; iter < 100; ++iter) {
     engine.signal_all();
     engine.start();
@@ -348,8 +354,11 @@ int main(int argc, char** argv) {
     }
     previous_count = current_count;
   }
+  iend = timer.current_time_millis();
   time(&end);
 
+  dc.cout() << "TIME: " << (iend / (float) 1000) << "\n";
+  dc.cout() << "CLOCKTIME: " << ((float)(clock() - clocktime) / CLOCKS_PER_SEC) << "\n";
   dc.cout() << "graph calculation time is " << (end - start) << " sec\n";
   dc.cout() << "The approximate diameter is " << diameter << "\n";
 
