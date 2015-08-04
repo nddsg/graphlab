@@ -524,22 +524,22 @@ include(CheckCXXCompilerFlag)
 # check if MARCH is set
 if (NOT MARCH)
   #set to native if supported
-  check_cxx_compiler_flag(-march=x86-64 HAS_MARCH_NATIVE)
+  check_cxx_compiler_flag(-march=k8 HAS_MARCH_NATIVE)
   if(HAS_MARCH_NATIVE)
-    set(MARCH "x86-64")
+    set(MARCH "k8")
   else()
-    set(MARCH "x86-64")
+    set(MARCH "k8")
   endif()
 endif()
 
 # check if MTUNE is set
 if (NOT MTUNE)
   #set to native if supported
-  check_cxx_compiler_flag(-mtune=x86-64 HAS_MTUNE_NATIVE)
+  check_cxx_compiler_flag(-mtune=k8 HAS_MTUNE_NATIVE)
   if(HAS_MTUNE_NATIVE)
-    set(MTUNE "x86-64")
+    set(MTUNE "k8")
   else()
-    set(MTUNE "x86-64")
+    set(MTUNE "k8")
   endif()
 endif()
 
